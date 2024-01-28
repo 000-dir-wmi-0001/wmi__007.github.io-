@@ -1,0 +1,34 @@
+{% extends "base.html" %} 
+{% block title %}Voice Recorder{% endblock %} 
+{% block head %}
+  <h1 style="text-align: center; margin: 0; padding-top: 2px;">
+    <i class="material-icons" style="padding: 10px;">record_voice_over</i>Speak to Remember
+    <i class="material-icons" style="padding: 10px; transform: scaleX(-1);">record_voice_over</i>
+  </h1>
+{% endblock %}
+{% block content %}
+  <div class="forms-style">
+    <p id="recording-time" style="text-align:center; font-weight: bolder; font-size: 40px;">00:00</p>
+    <button id="start-recording" style="background: none; border: none; padding-right: 10px;">
+      <i class="material-icons" style=" font-size: 40px;">fiber_manual_record</i>
+    </button>
+    <button id="stop-recording" disabled style="background: none; border: none; padding-right: 10px">
+      <i class="material-icons" style=" font-size: 40px;">pause_circle_filled</i>
+    </button>
+  </div>
+
+  <!-- Add this to your Voice.html file -->
+  <h2 align="center">Voice Notes</h2>
+
+  <ul style="display: flex; list-style-type: none;">
+    {% for recording in recordings %}
+      <li>
+        <p>Note: {{ recording.date}}
+          <button onclick="deleteRecording({{ recording.id }})" style="background: none; border: none; padding-right: 10px">
+            <i class="material-icons">delete</i>
+          </button>
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
